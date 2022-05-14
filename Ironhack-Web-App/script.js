@@ -10,14 +10,31 @@
       this.context = this.canvas.getContext("2d");
       const bgImage = new Image();
       const santaImage = new Image();
+
+      const snowBallImage = new Image();
+
       bgImage.src = "images/background.jpg";
-      santaImage.src = "images/santa.jpg";
+      santaImage.src = "images/hisanta.jpg";
+
+      snowBallImage.src = "images/newball.jpg";
+
       bgImage.onload = () => {
         this.bg = new Background(bgImage);
         santaImage.onload = () => {
           this.santa = new SantaClaus(santaImage);
+
+        
+
+        snowBallImage.onload = () => {
+             this.snowBall = new Obstacle(snowBallImage);
+            console.log(snowBallImage);
+
           this.bg.update();
+          console.log(this.santa);
           this.santa.update();
+          this.snowBall.update();
+
+
           document.onkeydown = (e) => {
             switch (e.key) {
               case "ArrowLeft":
@@ -34,7 +51,8 @@
           this.santa.speedX = 0;
         };
         updateGameArea();
-      };
+        }
+      }
     };
   },
   clear: function () {
@@ -149,27 +167,38 @@ class Background extends Component {
 }
 
 class Obstacle extends Component {
-  constructor() {
-    const xPos = Math.floor(Math.random() * myGameArea.canvas.width);
-    const height = 50;
-    const width = 50;
-    const yPos = -height;
-    super(xPos, yPos, width, height);
-    this.color = "red";
+  constructor(image) {
+  const xPos = Math.floor(Math.random() * myGameArea.canvas.width);
+
+    super(xPos, 0, 50, 50);
+    this.xPos = Math.floor(Math.random() * myGameArea.canvas.width);
+    this.height = 50;
+    this.width = 50;
+    this.yPos = -this.height;
+   
+     
     this.speedY = 1;
+    this.image = image;
+    console.log(image);
   }
 
   update() {
-    this.move();
-    myGameArea.context.fillStyle = this.color;
-    myGameArea.context.fillRect(this.posX, this.posY, this.width, this.height);
+   this.move();
+    myGameArea.context.drawImage(
+      this.image,
+      this.xPos ,
+      this.yPos,
+      this.width,
+      this.height
+    );
+     
     
   }
 }
 
 class SantaClaus extends Component {
     constructor(image) {
-      super(640, 550, 80, 150);
+      super(640, 550, 100, 150);
       this.image = image;
     }
 
