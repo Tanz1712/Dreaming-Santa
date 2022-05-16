@@ -9,15 +9,34 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container" id="title-container">
+    <!--<div class="container" id="title-container">
       <h1>My Web App</h1>
-    </div>
-    <canvas id="canvas" width="1280" height="720"></canvas>
+    </div> -->
+    
+  
+    <!--START MENU-->
 
-    <!--<button onclick="myFunction()">Click me!</button>-->
+      <div class="game-intro" id="start-screen"> 
+          <h1 class="header-start">Saving SANTA! 🎅</h1>
 
-    <button id="play-button">Play</button>
+          <p class="text"> This CHRISTMAS 🎄 is something different.</p>
+          <p>SANTA🎅 is confused with the unpredictable <b>Avalanche 🌨/🎁</b>.<br>
+          Let's <b>Save</b> and help him. 🎅<br> <br>
+          <h2><b><i>Instructions</i></b></h2>   
+          Watch out 🧊, try to SAVE Santa from the heavy <b>SNOWBALLS</b>, by moving ◀ left or right ▶. <br>
+          Do not forget to help him grab as many <i>surprise shower of</i> <b>GIFTS</b>🎁 as possible, along the way. <br> 
 
-    <script src="script.js"></script>
+          Let's spread Love ❤
+          </p>
+      
+          <a id="start-button"><img src="./Images/start.png" onclick="startScreen()" alt="startButton" class="buttons"></a>
+          <!--<button onclick="myFunction()">Click me!</button>-->
+      </div>
+        <!--GAME-->
+      <div id="game-board"> 
+              <canvas id="canvas" width="1280" height="720"></canvas>
+       </div>
+        <script src="script.js"></script>
+      
   </body>
 </html>

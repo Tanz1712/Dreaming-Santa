@@ -4,10 +4,14 @@
 
  const myGameArea = {
     frames: 0,
+
     score: 0,
+
     start: function () {
+      
       this.canvas = document.getElementById("canvas");
       this.context = this.canvas.getContext("2d");
+
       const bgImage = new Image();
       const santaImage = new Image();
       bgImage.src = "images/background.jpg";
@@ -36,23 +40,27 @@
         updateGameArea();
       };
     };
+  
   },
+  
   clear: function () {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   },
+  
 };
 
 const obstacles = [];
 
 window.onload = () => {
-  document.getElementById('play-button').onclick = () => {
-    startGame();
-  };
+    document.getElementById('start-button').onclick = () => { 
+     startGame(); 
+  }; 
 
   function startGame() {
-    myGameArea.start();
+    myGameArea.start(); 
+    
   }
-};
+} 
 
     class Component {
     constructor(posX, posY, width, height) {
@@ -155,7 +163,7 @@ class Obstacle extends Component {
     const width = 50;
     const yPos = -height;
     super(xPos, yPos, width, height);
-    this.color = "red";
+    this.color = "white";
     this.speedY = 1;
   }
 
