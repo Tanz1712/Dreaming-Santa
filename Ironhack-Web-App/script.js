@@ -14,14 +14,32 @@
 
       const bgImage = new Image();
       const santaImage = new Image();
-      bgImage.src = "images/background.jpg";
-      santaImage.src = "images/santa.jpg";
+
+    this.snowBallImage = new Image();
+
+      bgImage.src = "Images/background.jpg";
+      santaImage.src = "Images/hisanta.jpg";
+
+      this.snowBallImage.src = "Images/newball.jpg";
+
       bgImage.onload = () => {
         this.bg = new Background(bgImage);
         santaImage.onload = () => {
           this.santa = new SantaClaus(santaImage);
+
+        
+
+        this.snowBallImage.onload = () => {
+           
+            
+
           this.bg.update();
+          
           this.santa.update();
+          
+          
+
+
           document.onkeydown = (e) => {
             switch (e.key) {
               case "ArrowLeft":
@@ -38,7 +56,8 @@
           this.santa.speedX = 0;
         };
         updateGameArea();
-      };
+        }
+      }
     };
   
   },
@@ -157,27 +176,36 @@ class Background extends Component {
 }
 
 class Obstacle extends Component {
-  constructor() {
-    const xPos = Math.floor(Math.random() * myGameArea.canvas.width);
-    const height = 50;
-    const width = 50;
-    const yPos = -height;
-    super(xPos, yPos, width, height);
-    this.color = "white";
+
+  constructor(image) {
+  const xPos = Math.floor(Math.random() * myGameArea.canvas.width);
+
+    super(xPos, -50, 50, 50);
+  
+
     this.speedY = 1;
+    this.image = image;
+    
   }
 
   update() {
-    this.move();
-    myGameArea.context.fillStyle = this.color;
-    myGameArea.context.fillRect(this.posX, this.posY, this.width, this.height);
+   this.move();
+   
+    myGameArea.context.drawImage(
+      this.image,
+      this.posX,
+      this.posY,
+      this.width,
+      this.height
+    );
+     
     
   }
 }
 
 class SantaClaus extends Component {
     constructor(image) {
-      super(640, 550, 80, 150);
+      super(640, 550, 100, 150);
       this.image = image;
     }
 
@@ -206,12 +234,14 @@ function updateGameArea() {
   myGameArea.clear();
   myGameArea.bg.update();
   myGameArea.santa.update();
+
+ 
   if (myGameArea.frames % 120 === 0) {
-    obstacles.push(new Obstacle());
+    obstacles.push(new Obstacle(myGameArea.snowBallImage));
   }
   obstacles.forEach((element) => {
-    element.update();
-  });
+    element.update(); 
+  })
   myGameArea.frames += 1;
   myGameArea.context.font = "50px comic sans ms";
   myGameArea.context.fillStyle = "black";
