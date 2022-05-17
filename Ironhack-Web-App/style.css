@@ -12,7 +12,15 @@
     margin: 50px auto;
   } */
   
-
+  .container {
+    display: flex; 
+    
+    padding: 20px 0px;
+    width: 35%;
+    height: 720px;
+    margin-left: 25px;
+    margin-top: 30px;
+  }
 
 canvas {
   border: 1px solid black;
