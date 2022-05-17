@@ -11,12 +11,12 @@
       const bgImage = new Image();
       const santaImage = new Image();
 
-      const snowBallImage = new Image();
+    this.snowBallImage = new Image();
 
-      bgImage.src = "images/background.jpg";
-      santaImage.src = "images/hisanta.jpg";
+      bgImage.src = "Images/background.jpg";
+      santaImage.src = "Images/hisanta.jpg";
 
-      snowBallImage.src = "images/newball.jpg";
+      this.snowBallImage.src = "Images/newball.jpg";
 
       bgImage.onload = () => {
         this.bg = new Background(bgImage);
@@ -25,14 +25,15 @@
 
         
 
-        snowBallImage.onload = () => {
-             this.snowBall = new Obstacle(snowBallImage);
-            console.log(snowBallImage);
+        this.snowBallImage.onload = () => {
+           
+            
 
           this.bg.update();
-          console.log(this.santa);
+          
           this.santa.update();
-          this.snowBall.update();
+          
+          
 
 
           document.onkeydown = (e) => {
@@ -170,24 +171,20 @@ class Obstacle extends Component {
   constructor(image) {
   const xPos = Math.floor(Math.random() * myGameArea.canvas.width);
 
-    super(xPos, 0, 50, 50);
-    this.xPos = Math.floor(Math.random() * myGameArea.canvas.width);
-    this.height = 50;
-    this.width = 50;
-    this.yPos = -this.height;
-   
-     
+    super(xPos, -50, 50, 50);
+  
     this.speedY = 1;
     this.image = image;
-    console.log(image);
+    
   }
 
   update() {
    this.move();
+   
     myGameArea.context.drawImage(
       this.image,
-      this.xPos ,
-      this.yPos,
+      this.posX,
+      this.posY,
       this.width,
       this.height
     );
@@ -227,12 +224,14 @@ function updateGameArea() {
   myGameArea.clear();
   myGameArea.bg.update();
   myGameArea.santa.update();
+
+ 
   if (myGameArea.frames % 120 === 0) {
-    obstacles.push(new Obstacle());
+    obstacles.push(new Obstacle(myGameArea.snowBallImage));
   }
   obstacles.forEach((element) => {
-    element.update();
-  });
+    element.update(); 
+  })
   myGameArea.frames += 1;
   myGameArea.context.font = "50px comic sans ms";
   myGameArea.context.fillStyle = "black";
