@@ -13,8 +13,8 @@
   } */
   
   .container {
-    display: flex; 
-    
+   /* display: flex; 
+    justify-content: space-between; */
     padding: 20px 0px;
     width: 35%;
     height: 720px;
@@ -34,9 +34,9 @@ body {
 }
 
  .game-intro {
-  float: left; 
+  
   padding: 0% 10%;
-  color: black;
+  
   font-family: comic sans ms;
   background-image: url("./Images/background.jpg");
 } 
@@ -46,7 +46,7 @@ body {
   font-family: "comic sans ms";
 }
 
-.screen {
+/* .screen {
   padding: 20px;
   position: fixed;
   top: 10%;
@@ -55,9 +55,9 @@ body {
   width: 500px;
   text-align: center;
   background-image: url("./Images/background.jpg");
-}
+} */
 
-/*.buttons {
+button {
   font-size: 30px;
   background-color: #870007;
   color: #fff;
@@ -66,7 +66,7 @@ body {
   box-shadow: 0;
   border-radius: 5px;
   margin-bottom: 20px;
-}*/
+}
  
 #start-button {
   transition-duration: 0.4s;
@@ -76,8 +76,7 @@ body {
   font-size: 20px;
 }
 
- #game-board {
-    float: center; 
+ #game-board { 
     padding: 20px 0px;
 } 
 

@@ -1,6 +1,8 @@
 /* function myFunction() {
     alert("This app is awesome!");
 } */
+var myMusic;
+var mySound;
 
  const myGameArea = {
     frames: 0,
@@ -15,12 +17,16 @@
       const bgImage = new Image();
       const santaImage = new Image();
 
-    this.snowBallImage = new Image();
+      this.snowBallImage = new Image();
+
+    
 
       bgImage.src = "Images/background.jpg";
-      santaImage.src = "Images/hisanta.jpg";
+      santaImage.src = "Images/sleepsanta.jpg";
 
       this.snowBallImage.src = "Images/newball.jpg";
+
+   
 
       bgImage.onload = () => {
         this.bg = new Background(bgImage);
@@ -30,6 +36,8 @@
         
 
         this.snowBallImage.onload = () => {
+
+       
            
             
 
@@ -58,6 +66,7 @@
         updateGameArea();
         }
       }
+   /* } */
     };
   
   },
@@ -70,13 +79,27 @@
 
 const obstacles = [];
 
+
 window.onload = () => {
     document.getElementById('start-button').onclick = () => { 
-     startGame(); 
+     /* startGame(); */ 
+     startScreen();
+     startGame();
   }; 
+  function startScreen() {
+    var x = document.getElementById("start-screen");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
 
   function startGame() {
     myGameArea.start(); 
+    myMusic = new Sound("./music/jingle-bells-8bit.mp3");
+    myMusic.play();
+    mySound = new Sound("./music/big-impact-7054.mp3");
     
   }
 } 
@@ -149,6 +172,7 @@ window.onload = () => {
     }
   
     crashWith(obstacle) {
+      
       return !(
         this.bottom() < obstacle.top() ||
         this.top() > obstacle.bottom() ||
@@ -156,6 +180,8 @@ window.onload = () => {
         this.left() > obstacle.right()
       );
     } 
+
+ 
 }
 
 class Background extends Component {
@@ -183,7 +209,7 @@ class Obstacle extends Component {
     super(xPos, -50, 50, 50);
   
 
-    this.speedY = 1;
+    this.speedY = 2;
     this.image = image;
     
   }
@@ -203,9 +229,11 @@ class Obstacle extends Component {
   }
 }
 
+
+
 class SantaClaus extends Component {
     constructor(image) {
-      super(640, 550, 100, 150);
+      super(640, 550, 350, 150);
       this.image = image;
     }
 
@@ -249,15 +277,35 @@ function updateGameArea() {
     const gameOver = obstacles.some((element) => {
       return myGameArea.santa.crashWith(element);
   });
+
+
+
   if (!gameOver) {
     myGameArea.score += 10;
     requestAnimationFrame(updateGameArea);
   } else {
-    alert(`Congrats, you just got ${myGameArea.score} points`);
+    myMusic.stop();
+    mySound.play();
+    alert(`Congrats 🎉, you just got ${myGameArea.score} points. But you lost. Refresh the page to try again`);
   }
 }
 
-
+class Sound {
+  constructor(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function () {
+      this.sound.play();
+    };
+    this.stop = function () {
+      this.sound.pause();
+    };
+  }
+}
 
 
 
