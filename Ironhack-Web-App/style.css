@@ -10,7 +10,9 @@ body {
   padding: 20px 0px;
   width: 50%;
   height: 780px;
+  margin-left: 50px;
   margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 h1 {
@@ -50,3 +52,14 @@ button {
 #game-board {
   padding: 20px 0px;
 }
+
+/* @media only screen and (max-width: 600px) {
+ 
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      width: 700px;
+      height: 500px;
+    }
+  } */
