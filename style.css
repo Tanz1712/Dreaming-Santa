@@ -1,14 +1,52 @@
-#title-container {
-    background-color: black;
-  }
-  
-  h1 {
-    text-align: center;
-    color: white;
-  }
+body {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
 
-  .container {
-    width: 400px;
-    margin: 50px auto;
-  }
+.container {
+  display: flex;
+  justify-content: flex-start;
+  padding: 20px 0px;
+  width: 50%;
+  height: 780px;
+  margin-top: 30px;
+}
+
+h1 {
+  color: #870007;
+}
+
+.game-intro {
+  padding: 0% 10%;
+  opacity: 0.8;
+  font-size: 18px;
+  font-family: comic sans ms;
+  background-image: url("./Images/background_css.jpg");
+}
+
+canvas {
+  border: 1px solid black;
   
+}
+
+button {
+  font-size: 30px;
+  font-family: comic sans ms;
+  background-color: #870007;
+  color: #fff;
+  padding: 20px 40px;
+  border: 0;
+  box-shadow: 0;
+  border-radius: 25px;
+  margin-bottom: 40px;
+}
+#start-button {
+  transition-duration: 0.4s;
+}
+#start-button:hover {
+  font-size: 40px;
+}
+#game-board {
+  padding: 20px 0px;
+}
